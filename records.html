@@ -1,0 +1,44 @@
+<head>
+  <title>Record Catalog</title>
+</head>
+
+<body>
+  <h1>Catalog of Current Records</h1>
+
+	<header>
+		<form class="new-record">
+			<input type="text" name="record_name" placeholder="Type to add new record" />
+		</form>
+		{{> searchresultscontainer}}
+	</header>
+
+  <div>
+		<ul>
+			{{#each records}}
+				{{>record}}
+			{{/each}}
+		</ul>
+	</div>
+</body>
+
+<template name="record">
+	<li>{{record_name}}</li>
+	<button class="delete">&times;</button>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+</template>
+<template name="searchresultscontainer">
+	<div class="searchresults">
+		{{>searchresult}}
+	</div>
+</template>
+
+<template name="searchresult">
+	{{#each searchresults}}
+		<div class="record-result" data-record-id={{id}}>
+			<h3>{{title}}</h3>
+			<div class="image-container">
+				<img src="{{thumb}}">
+			</div>
+		</div>
+	{{/each}}
+</template>
